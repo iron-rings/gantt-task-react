@@ -13,6 +13,8 @@ export type TaskGanttProps = {
   scrollX: number;
   setXScroll: (scroll: number) => void;
   setYScroll: (scroll: number) => void;
+  maxWidth: number;
+  maxHeight: number;
 };
 export const TaskGantt: React.FC<TaskGanttProps> = ({
   gridProps,
@@ -23,6 +25,8 @@ export const TaskGantt: React.FC<TaskGanttProps> = ({
   scrollX,
   setXScroll,
   setYScroll,
+  maxWidth,
+  maxHeight,
 }) => {
   const ganttSVGRef = useRef<SVGSVGElement>(null);
   const horizontalContainerRef = useRef<HTMLDivElement>(null);
@@ -49,9 +53,14 @@ export const TaskGantt: React.FC<TaskGanttProps> = ({
       const newScrollX = scrollX + dx;
       const newScrollY = scrollY + dy;
 
+      // スクロール位置が最大値を超えないようにする
+      const x = Math.max(0, Math.min(maxWidth, newScrollX));
+      const y = Math.max(0, Math.min(maxHeight, newScrollY));
+
+      console.log(x, maxWidth, newScrollX);
       // スクロール位置を更新
-      setXScroll(newScrollX);
-      setYScroll(newScrollY);
+      setXScroll(x);
+      setYScroll(y);
 
       // ドラッグの基準点を更新
       setStartX(e.clientX);
@@ -73,7 +82,17 @@ export const TaskGantt: React.FC<TaskGanttProps> = ({
       window.removeEventListener("mousemove", onDragMove);
       window.removeEventListener("mouseup", onDragEnd);
     };
-  }, [isDragging, startX, startY, scrollX, scrollY, setXScroll, setYScroll]);
+  }, [
+    isDragging,
+    maxHeight,
+    maxWidth,
+    scrollX,
+    scrollY,
+    setXScroll,
+    setYScroll,
+    startX,
+    startY,
+  ]);
 
   useEffect(() => {
     if (horizontalContainerRef.current) {

@@ -467,6 +467,8 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
           scrollX={scrollX}
           setXScroll={setScrollX}
           setYScroll={setScrollY}
+          maxHeight={ganttHeight - headerHeight}
+          maxWidth={svgWidth - taskListWidth}
         />
         {ganttEvent.changedTask && (
           <Tooltip
