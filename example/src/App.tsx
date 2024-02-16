@@ -1,8 +1,8 @@
+import { Gantt, Task, ViewMode } from "gantt-task-react";
+import "gantt-task-react/dist/index.css";
 import React from "react";
-import { Task, ViewMode, Gantt } from "gantt-task-react";
 import { ViewSwitcher } from "./components/view-switcher";
 import { getStartEndDateForProject, initTasks } from "./helper";
-import "gantt-task-react/dist/index.css";
 
 // Init
 const App = () => {
@@ -87,6 +87,7 @@ const App = () => {
         onExpanderClick={handleExpanderClick}
         listCellWidth={isChecked ? "155px" : ""}
         columnWidth={columnWidth}
+        locale="jpn"
       />
       <h3>Gantt With Limited Height</h3>
       <Gantt
