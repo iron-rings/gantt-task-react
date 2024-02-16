@@ -1,6 +1,6 @@
-import React, { useRef, useEffect, useState } from "react";
-import { Task } from "../../types/public-types";
+import React, { useEffect, useRef, useState } from "react";
 import { BarTask } from "../../types/bar-task";
+import { Task } from "../../types/public-types";
 import styles from "./tooltip.module.css";
 
 export type TooltipProps = {
@@ -125,20 +125,20 @@ export const StandardTooltipContent: React.FC<{
     <div className={styles.tooltipDefaultContainer} style={style}>
       <b style={{ fontSize: fontSize + 6 }}>{`${
         task.name
-      }: ${task.start.getDate()}-${
+      }: ${task.start.getFullYear()}/${
         task.start.getMonth() + 1
-      }-${task.start.getFullYear()} - ${task.end.getDate()}-${
+      }/${task.start.getDate()} - ${task.end.getFullYear()}/${
         task.end.getMonth() + 1
-      }-${task.end.getFullYear()}`}</b>
+      }/${task.end.getDate()}`}</b>
       {task.end.getTime() - task.start.getTime() !== 0 && (
-        <p className={styles.tooltipDefaultContainerParagraph}>{`Duration: ${~~(
+        <p className={styles.tooltipDefaultContainerParagraph}>{`期間: ${~~(
           (task.end.getTime() - task.start.getTime()) /
           (1000 * 60 * 60 * 24)
-        )} day(s)`}</p>
+        )} 日`}</p>
       )}
 
       <p className={styles.tooltipDefaultContainerParagraph}>
-        {!!task.progress && `Progress: ${task.progress} %`}
+        {!!task.progress && `進捗: ${task.progress} %`}
       </p>
     </div>
   );
