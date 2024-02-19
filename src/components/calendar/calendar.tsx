@@ -179,7 +179,7 @@ export const Calendar: React.FC<CalendarProps> = ({
         topValue = `${date.getFullYear()}年${getLocaleMonth(date, locale)}`;
       }
       // bottom
-      const bottomValue = `W${getWeekNumberISO8601(date)}`;
+      const bottomValue = `${getWeekNumberISO8601(date)}週目`;
 
       bottomValues.push(
         <text
