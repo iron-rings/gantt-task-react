@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
-import styles from "./task-list-table.module.css";
 import { Task } from "../../types/public-types";
+import styles from "./task-list-table.module.css";
 
 const localeDateStringCache = {};
 const toLocaleDateStringFactory =
@@ -72,8 +72,11 @@ export const TaskListTableDefault: React.FC<{
               style={{
                 minWidth: rowWidth,
                 maxWidth: rowWidth,
+                cursor: t.hideChildren !== undefined ? "pointer" : "default",
+                fontWeight: t.hideChildren !== undefined ? "bold" : "normal",
               }}
               title={t.name}
+              onClick={() => onExpanderClick(t)}
             >
               <div className={styles.taskListNameWrapper}>
                 <div
@@ -82,8 +85,8 @@ export const TaskListTableDefault: React.FC<{
                       ? styles.taskListExpander
                       : styles.taskListEmptyExpander
                   }
-                  onClick={() => onExpanderClick(t)}
                 >
+                  {t.project ? "　" : ""}
                   {expanderSymbol}
                 </div>
                 <div>{t.name}</div>
