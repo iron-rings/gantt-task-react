@@ -42,6 +42,7 @@
   text-overflow: ellipsis;
   background-color: #F1F5F9;
   padding: 4px 10px;
+  font-size: small;
 }
 .taskListNameWrapper {
   display: flex;
