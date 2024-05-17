@@ -64,7 +64,7 @@ export const TaskListTableDefault: React.FC<{
                   }
                 >
                   {t.project ? "　" : ""}
-                  {expanderSymbol}
+                  {"　"}{expanderSymbol}
                 </div>
                 <div>
                   {t.type === "task" || t.type === "taskGrp" ? (
@@ -81,8 +81,9 @@ export const TaskListTableDefault: React.FC<{
                 maxWidth: rowWidth,
               }}
             >
+              {"　"}
               <div className={styles.taskListDateChip}>
-                &nbsp;{dayjs(t.start).format("YY.MM.DD")}
+              &nbsp;{dayjs(t.start).format("YY.MM.DD")}
               </div>
             </div>
             <div
@@ -91,9 +92,9 @@ export const TaskListTableDefault: React.FC<{
                 minWidth: rowWidth,
                 maxWidth: rowWidth,
               }}
-            >
+            >{"　"}
               <div className={styles.taskListDateChip}>
-                &nbsp;{dayjs(t.end).format("YY.MM.DD")}
+              &nbsp;{dayjs(t.end).format("YY.MM.DD")}
               </div>
             </div>
           </div>
