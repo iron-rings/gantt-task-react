@@ -22,7 +22,7 @@
   display: inline-block;
   color: #3DB4C7;
   padding-right: 4px;
-  font-size: x-large;
+  font-size: small;
 }
 .taskListCell {
   display: table-cell;

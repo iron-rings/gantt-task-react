@@ -67,7 +67,7 @@ export const TaskListTableDefault: React.FC<{
                   {"　"}{expanderSymbol}
                 </div>
                 <div>
-                  {t.type === "task" || t.type === "taskGrp" ? (
+                  {t.type === "task" || t.type === "task_grps" ? (
                     <div className={t.type === "task" ? styles.taskTypeDotTask : styles.taskTypeDotGrp}>●</div>
                   ) : undefined}
                   {t.name}

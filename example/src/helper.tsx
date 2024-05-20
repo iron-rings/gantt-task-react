@@ -25,7 +25,7 @@ export function initTasks() {
       name: "Idea",
       id: "Task 0",
       progress: 45,
-      type: "task",
+      type: "task_grps",
       project: "ProjectSample",
       displayOrder: 2,
     },
@@ -91,7 +91,7 @@ export function initTasks() {
       id: "Task 9",
       progress: 0,
       isDisabled: true,
-      type: "task",
+      type: "task_grps",
     },
   ];
   return tasks;
