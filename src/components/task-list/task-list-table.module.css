@@ -46,6 +46,7 @@
 }
 .taskListNameWrapper {
   display: flex;
+  align-items: center;
 }
 
 .taskListExpander {
