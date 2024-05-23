@@ -8,7 +8,7 @@ export const Order: React.FC<TaskItemProps> = ({ task, isSelected }) => {
     : task.styles.backgroundColor;
   const processColor = isSelected
     ? task.styles.progressSelectedColor
-    : task.styles.progressColor;
+    : task.styles.progressSelectedColor;
   const orderWidth = task.x2 - task.x1;
 
   return (
