@@ -97,7 +97,8 @@ export const Tooltip: React.FC<TooltipProps> = ({
     rtl,
   ]);
 
-  return (
+
+  return task.type !== "order" ? (
     <div
       ref={tooltipRef}
       className={
@@ -109,7 +110,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
     >
       <TooltipContent task={task} fontSize={fontSize} fontFamily={fontFamily} />
     </div>
-  );
+  ) : <p>{""}</p>;
 };
 
 export const StandardTooltipContent: React.FC<{
@@ -121,6 +122,7 @@ export const StandardTooltipContent: React.FC<{
     fontSize,
     fontFamily,
   };
+  console.log('task', task);
   return (
     <div className={styles.tooltipDefaultContainer} style={style}>
       <b style={{ fontSize: fontSize + 6 }}>{`${
