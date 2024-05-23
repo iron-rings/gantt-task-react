@@ -122,7 +122,6 @@ export const StandardTooltipContent: React.FC<{
     fontSize,
     fontFamily,
   };
-  console.log('task', task);
   return (
     <div className={styles.tooltipDefaultContainer} style={style}>
       <b style={{ fontSize: fontSize + 6 }}>{`${
