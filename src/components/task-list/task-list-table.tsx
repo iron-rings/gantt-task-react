@@ -1,7 +1,7 @@
+import dayjs from "dayjs";
 import React from "react";
 import { Task } from "../../types/public-types";
 import styles from "./task-list-table.module.css";
-import dayjs from "dayjs";
 
 export const TaskListTableDefault: React.FC<{
   rowHeight: number;
@@ -21,7 +21,6 @@ export const TaskListTableDefault: React.FC<{
   fontSize,
   onExpanderClick,
 }) => {
-
   return (
     <div
       className={styles.taskListWrapper}
@@ -33,9 +32,9 @@ export const TaskListTableDefault: React.FC<{
       {tasks.map(t => {
         let expanderSymbol = "";
         if (t.hideChildren === false) {
-          expanderSymbol = "▼";
+          expanderSymbol = "＋";
         } else if (t.hideChildren === true) {
-          expanderSymbol = "▶";
+          expanderSymbol = "－";
         }
 
         return (
@@ -63,12 +62,22 @@ export const TaskListTableDefault: React.FC<{
                       : styles.taskListEmptyExpander
                   }
                 >
+                  {t.type === "order" ? "" : "　"}
                   {t.project ? "　" : ""}
-                  {"　"}{expanderSymbol}
+                  {"　"}
+                  {expanderSymbol}
                 </div>
                 <div>
                   {t.type === "task" || t.type === "task_grps" ? (
-                    <div className={t.type === "task" ? styles.taskTypeDotTask : styles.taskTypeDotGrp}>●</div>
+                    <div
+                      className={
+                        t.type === "task"
+                          ? styles.taskTypeDotTask
+                          : styles.taskTypeDotGrp
+                      }
+                    >
+                      ●
+                    </div>
                   ) : undefined}
                   {t.name}
                 </div>
@@ -83,7 +92,7 @@ export const TaskListTableDefault: React.FC<{
             >
               {"　"}
               <div className={styles.taskListDateChip}>
-              &nbsp;{dayjs(t.start).format("YY.MM.DD")}
+                &nbsp;{dayjs(t.start).format("YY.MM.DD")}
               </div>
             </div>
             <div
@@ -92,9 +101,10 @@ export const TaskListTableDefault: React.FC<{
                 minWidth: rowWidth,
                 maxWidth: rowWidth,
               }}
-            >{"　"}
+            >
+              {"　"}
               <div className={styles.taskListDateChip}>
-              &nbsp;{dayjs(t.end).format("YY.MM.DD")}
+                &nbsp;{dayjs(t.end).format("YY.MM.DD")}
               </div>
             </div>
           </div>

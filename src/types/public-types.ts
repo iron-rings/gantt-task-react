@@ -9,7 +9,7 @@ export enum ViewMode {
   QuarterYear = "QuarterYear",
   Year = "Year",
 }
-export type TaskType = "task" | "task_grps" | "milestone" | "project";
+export type TaskType = "task" | "task_grps" | "milestone" | "project" | "order";
 export interface Task {
   id: string;
   type: TaskType;
@@ -27,6 +27,7 @@ export interface Task {
     progressSelectedColor?: string;
   };
   isDisabled?: boolean;
+  order?: string;
   project?: string;
   dependencies?: string[];
   hideChildren?: boolean;

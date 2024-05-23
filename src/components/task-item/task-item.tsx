@@ -4,6 +4,7 @@ import { GanttContentMoveAction } from "../../types/gantt-task-actions";
 import { Bar } from "./bar/bar";
 import { BarSmall } from "./bar/bar-small";
 import { Milestone } from "./milestone/milestone";
+import { Order } from "./order/order";
 import { Project } from "./project/project";
 import style from "./task-list.module.css";
 
@@ -43,6 +44,9 @@ export const TaskItem: React.FC<TaskItemProps> = props => {
     switch (task.typeInternal) {
       case "milestone":
         setTaskItem(<Milestone {...props} />);
+        break;
+      case "order":
+        setTaskItem(<Order {...props} />);
         break;
       case "project":
         setTaskItem(<Project {...props} />);
