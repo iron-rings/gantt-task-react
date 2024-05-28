@@ -1,8 +1,7 @@
 import React, { ReactChild } from "react";
-import { Task } from "../../types/public-types";
 import { addToDate } from "../../helpers/date-helper";
+import { Task } from "../../types/public-types";
 import styles from "./grid.module.css";
-
 export type GridBodyProps = {
   tasks: Task[];
   dates: Date[];
@@ -56,7 +55,6 @@ export const GridBody: React.FC<GridBodyProps> = ({
     );
     y += rowHeight;
   }
-
   const now = new Date();
   let tickX = 0;
   const ticks: ReactChild[] = [];

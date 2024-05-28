@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { BarTask } from "../../types/bar-task";
 import { Task } from "../../types/public-types";
-
 export type TaskListProps = {
   headerHeight: number;
   rowWidth: string;
@@ -35,7 +34,6 @@ export type TaskListProps = {
     onExpanderClick: (task: Task) => void;
   }>;
 };
-
 export const TaskList: React.FC<TaskListProps> = ({
   headerHeight,
   fontFamily,
@@ -60,7 +58,6 @@ export const TaskList: React.FC<TaskListProps> = ({
       horizontalContainerRef.current.scrollTop = scrollY;
     }
   }, [scrollY]);
-
   const headerProps = {
     headerHeight,
     fontFamily,
@@ -79,7 +76,6 @@ export const TaskList: React.FC<TaskListProps> = ({
     setSelectedTask,
     onExpanderClick,
   };
-
   return (
     <div ref={taskListRef}>
       <TaskListHeader {...headerProps} />

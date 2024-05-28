@@ -3,7 +3,6 @@ import "gantt-task-react/dist/index.css";
 import React from "react";
 import { ViewSwitcher } from "./components/view-switcher";
 import { getStartEndDateForProject, initTasks } from "./helper";
-
 // Init
 const App = () => {
   const [view, setView] = React.useState<ViewMode>(ViewMode.Day);
@@ -17,7 +16,6 @@ const App = () => {
   } else if (view === ViewMode.Week) {
     columnWidth = 250;
   }
-
   const handleTaskChange = (task: Task) => {
     console.log("On date change Id:" + task.id);
     let newTasks = tasks.map(t => (t.id === task.id ? task : t));
@@ -36,7 +34,6 @@ const App = () => {
     }
     setTasks(newTasks);
   };
-
   const handleTaskDelete = (task: Task) => {
     const conf = window.confirm("Are you sure about " + task.name + " ?");
     if (conf) {
@@ -44,29 +41,23 @@ const App = () => {
     }
     return conf;
   };
-
   const handleProgressChange = async (task: Task) => {
     setTasks(tasks.map(t => (t.id === task.id ? task : t)));
     console.log("On progress change Id:" + task.id);
   };
-
   const handleDblClick = (task: Task) => {
     alert("On Double Click event Id:" + task.id);
   };
-
   const handleClick = (task: Task) => {
     console.log("On Click event Id:" + task.id);
   };
-
   const handleSelect = (task: Task, isSelected: boolean) => {
     console.log(task.name + " has " + (isSelected ? "selected" : "unselected"));
   };
-
   const handleExpanderClick = (task: Task) => {
     setTasks(tasks.map(t => (t.id === task.id ? task : t)));
     console.log("On expander click Id:" + task.id);
   };
-
   return (
     <div className="Wrapper">
       <ViewSwitcher
@@ -107,5 +98,4 @@ const App = () => {
     </div>
   );
 };
-
 export default App;

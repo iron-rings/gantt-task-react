@@ -1,5 +1,4 @@
 import { BarTask } from "./bar-task";
-
 export type BarMoveAction = "progress" | "end" | "start" | "move";
 export type GanttContentMoveAction =
   | "mouseenter"
@@ -10,7 +9,6 @@ export type GanttContentMoveAction =
   | "select"
   | ""
   | BarMoveAction;
-
 export type GanttEvent = {
   changedTask?: BarTask;
   originalSelectedTask?: BarTask;

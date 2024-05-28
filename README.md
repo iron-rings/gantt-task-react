@@ -17,7 +17,6 @@ npm install gantt-task-react
 ```javascript
 import { Gantt, Task, EventOption, StylingOption, ViewMode, DisplayOption } from 'gantt-task-react';
 import "gantt-task-react/dist/index.css";
-
 let tasks: Task[] = [
     {
       start: new Date(2020, 1, 1),
@@ -84,13 +83,13 @@ npm start
 
 ### DisplayOption
 
-| Parameter Name | Type    | Description                                                                                                 |
-| :------------- | :------ | :---------------------------------------------------------------------------------------------------------- |
+| Parameter Name | Type    | Description                                                                                                              |
+| :------------- | :------ | :----------------------------------------------------------------------------------------------------------------------- |
 | viewMode       | enum    | Specifies the time scale. Hour, Quarter Day, Half Day, Day, Week(ISO-8601, 1st day is Monday), Month, QuarterYear, Year. |
-| viewDate       | date    | Specifies display date and time for display.                                                                |
-| preStepsCount  | number  | Specifies empty space before the fist task                                                                  |
-| locale         | string  | Specifies the month name language. Able formats: ISO 639-2, Java Locale.                                    |
-| rtl            | boolean | Sets rtl mode.                                                                                              |
+| viewDate       | date    | Specifies display date and time for display.                                                                             |
+| preStepsCount  | number  | Specifies empty space before the fist task                                                                               |
+| locale         | string  | Specifies the month name language. Able formats: ISO 639-2, Java Locale.                                                 |
+| rtl            | boolean | Sets rtl mode.                                                                                                           |
 
 ### StylingOption
 

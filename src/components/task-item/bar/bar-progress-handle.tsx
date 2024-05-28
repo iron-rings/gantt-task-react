@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./bar.module.css";
-
 type BarProgressHandleProps = {
   progressPoint: string;
   onMouseDown: (event: React.MouseEvent<SVGPolygonElement, MouseEvent>) => void;

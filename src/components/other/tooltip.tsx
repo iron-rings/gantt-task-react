@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { BarTask } from "../../types/bar-task";
 import { Task } from "../../types/public-types";
 import styles from "./tooltip.module.css";
-
 export type TooltipProps = {
   task: BarTask;
   arrowIndent: number;
@@ -45,7 +44,6 @@ export const Tooltip: React.FC<TooltipProps> = ({
     if (tooltipRef.current) {
       const tooltipHeight = tooltipRef.current.offsetHeight * 1.1;
       const tooltipWidth = tooltipRef.current.offsetWidth * 1.1;
-
       let newRelatedY = task.index * rowHeight - scrollY + headerHeight;
       let newRelatedX: number;
       if (rtl) {
@@ -75,7 +73,6 @@ export const Tooltip: React.FC<TooltipProps> = ({
           newRelatedY += rowHeight;
         }
       }
-
       const tooltipLowerPoint = tooltipHeight + newRelatedY - scrollY;
       if (tooltipLowerPoint > svgContainerHeight - scrollY) {
         newRelatedY = svgContainerHeight - tooltipHeight;
@@ -96,8 +93,6 @@ export const Tooltip: React.FC<TooltipProps> = ({
     svgContainerWidth,
     rtl,
   ]);
-
-
   return task.type !== "order" ? (
     <div
       ref={tooltipRef}
@@ -110,9 +105,10 @@ export const Tooltip: React.FC<TooltipProps> = ({
     >
       <TooltipContent task={task} fontSize={fontSize} fontFamily={fontFamily} />
     </div>
-  ) : <p>{""}</p>;
+  ) : (
+    <p>{""}</p>
+  );
 };
-
 export const StandardTooltipContent: React.FC<{
   task: Task;
   fontSize: string;
@@ -137,7 +133,6 @@ export const StandardTooltipContent: React.FC<{
           (1000 * 60 * 60 * 24)
         )} 日`}</p>
       )}
-
       <p className={styles.tooltipDefaultContainerParagraph}>
         {!!task.progress && `進捗: ${task.progress} %`}
       </p>

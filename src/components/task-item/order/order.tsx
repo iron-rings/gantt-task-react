@@ -1,7 +1,6 @@
 import React from "react";
 import { TaskItemProps } from "../task-item";
 import styles from "./order.module.css";
-
 export const Order: React.FC<TaskItemProps> = ({ task, isSelected }) => {
   const barColor = isSelected
     ? task.styles.backgroundSelectedColor
@@ -10,7 +9,6 @@ export const Order: React.FC<TaskItemProps> = ({ task, isSelected }) => {
     ? task.styles.progressSelectedColor
     : task.styles.progressSelectedColor;
   const orderWidth = task.x2 - task.x1;
-
   return (
     <g tabIndex={0} className={styles.projectWrapper}>
       <rect

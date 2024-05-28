@@ -4,13 +4,11 @@
   margin: 0;
   padding: 0;
 }
-
 .horizontalContainer {
   margin: 0;
   padding: 0;
   overflow: hidden;
 }
-
 .wrapper {
   display: flex;
   padding: 0;

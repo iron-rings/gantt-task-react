@@ -9,7 +9,6 @@
   justify-content: flex-end;
   align-items: center;
 }
-
 .Button {
   background-color: #e7e7e7;
   color: black;
@@ -36,13 +35,11 @@
   height: 30px;
   margin-right: 5px;
 }
-
 .Switch_Toggle input {
   opacity: 0;
   width: 0;
   height: 0;
 }
-
 .Slider {
   position: absolute;
   cursor: pointer;
@@ -54,7 +51,6 @@
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
-
 .Slider:before {
   position: absolute;
   content: "";
@@ -66,15 +62,12 @@
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
-
 input:checked + .Slider {
   background-color: #2196f3;
 }
-
 input:focus + .Slider {
   box-shadow: 0 0 1px #2196f3;
 }
-
 input:checked + .Slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);

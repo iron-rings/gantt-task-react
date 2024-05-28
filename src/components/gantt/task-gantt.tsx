@@ -3,7 +3,6 @@ import { Calendar, CalendarProps } from "../calendar/calendar";
 import { Grid, GridProps } from "../grid/grid";
 import styles from "./gantt.module.css";
 import { TaskGanttContent, TaskGanttContentProps } from "./task-gantt-content";
-
 export type TaskGanttProps = {
   gridProps: GridProps;
   calendarProps: CalendarProps;
@@ -24,19 +23,16 @@ export const TaskGantt: React.FC<TaskGanttProps> = ({
   const horizontalContainerRef = useRef<HTMLDivElement>(null);
   const verticalGanttContainerRef = useRef<HTMLDivElement>(null);
   const newBarProps = { ...barProps, svg: ganttSVGRef };
-
   useEffect(() => {
     if (horizontalContainerRef.current) {
       horizontalContainerRef.current.scrollTop = scrollY;
     }
   }, [scrollY]);
-
   useEffect(() => {
     if (verticalGanttContainerRef.current) {
       verticalGanttContainerRef.current.scrollLeft = scrollX;
     }
   }, [scrollX]);
-
   return (
     <div
       className={styles.ganttVerticalContainer}

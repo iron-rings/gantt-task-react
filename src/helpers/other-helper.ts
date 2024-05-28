@@ -1,5 +1,5 @@
 import { BarTask } from "../types/bar-task";
-import { Task, TaskType } from "../types/public-types";
+import { Task } from "../types/public-types";
 
 export function isKeyboardEvent(
   event: React.MouseEvent | React.KeyboardEvent | React.FocusEvent
@@ -70,24 +70,75 @@ function getChildren(taskList: Task[], task: Task): Task[] {
   console.log(tasks); // デバッグ用にタスクリストを表示
   return tasks;
 }
-const typeOrder: { [key in TaskType]: number } = {
-  order: 1,
-  project: 2,
-  task: 3,
-  task_grps: 3,
-  milestone: 4,
-};
 
-export const sortTasks = (taskA: Task, taskB: Task) => {
-  const typeOrderA = typeOrder[taskA.type];
-  const typeOrderB = typeOrder[taskB.type];
+interface TaskWithChildren extends Task {
+  children: TaskWithChildren[];
+}
 
-  if (typeOrderA !== typeOrderB) {
-    return typeOrderA - typeOrderB;
-  }
+export const sortTasks = (tasks: Task[]): Task[] => {
+  const orderRecords: Record<string, TaskWithChildren> = {};
+  const projectRecords: Record<string, TaskWithChildren> = {};
+  const taskRecords: Task[] = [];
 
-  const orderA = taskA.displayOrder ?? Number.MAX_VALUE;
-  const orderB = taskB.displayOrder ?? Number.MAX_VALUE;
+  tasks.forEach(task => {
+    const taskWithChildren = task as TaskWithChildren;
+    taskWithChildren.children = [];
+    if (task.type === "order") {
+      orderRecords[task.id] = taskWithChildren;
+    } else if (task.type === "project") {
+      projectRecords[task.id] = taskWithChildren;
+    } else {
+      taskRecords.push(task);
+    }
+  });
 
-  return orderA - orderB;
+  // taskRecordsをstartとendでソート
+  taskRecords.sort(
+    (a, b) =>
+      a.start.getTime() - b.start.getTime() || a.end.getTime() - b.end.getTime()
+  );
+
+  // taskRecordsをprojectRecordsのchildrenに追加
+  taskRecords.forEach(task => {
+    if (task.project) {
+      if (projectRecords[task.project]) {
+        projectRecords[task.project].children.push(task as TaskWithChildren);
+      }
+    } else {
+      console.error("Task has no project", task);
+    }
+  });
+
+  // projectRecordsをendでソート
+  const sortedProjectRecords = Object.values(projectRecords).sort(
+    (a, b) => a.end.getTime() - b.end.getTime()
+  );
+
+  // projectRecordsをorderRecordsのchildrenに追加
+  sortedProjectRecords.forEach(project => {
+    if (project.order) {
+      if (orderRecords[project.order]) {
+        orderRecords[project.order].children.push(project);
+      }
+    } else {
+      console.error("Project has no order", project);
+    }
+  });
+
+  // orderRecordsをendでソート
+  const sortedOrder = Object.values(orderRecords).sort(
+    (a, b) => a.end.getTime() - b.end.getTime()
+  );
+
+  // childrenをフラットにしてTask[]に変換
+  const sortedTasks: Task[] = [];
+  sortedOrder.forEach(order => {
+    sortedTasks.push(order);
+    order.children.forEach(project => {
+      sortedTasks.push(project);
+      sortedTasks.push(...project.children);
+    });
+  });
+
+  return sortedTasks;
 };

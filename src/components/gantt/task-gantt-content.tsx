@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { EventOption } from "../../types/public-types";
-import { BarTask } from "../../types/bar-task";
-import { Arrow } from "../other/arrow";
 import { handleTaskBySVGMouseEvent } from "../../helpers/bar-helper";
 import { isKeyboardEvent } from "../../helpers/other-helper";
-import { TaskItem } from "../task-item/task-item";
+import { BarTask } from "../../types/bar-task";
 import {
   BarMoveAction,
   GanttContentMoveAction,
   GanttEvent,
 } from "../../types/gantt-task-actions";
-
+import { EventOption } from "../../types/public-types";
+import { Arrow } from "../other/arrow";
+import { TaskItem } from "../task-item/task-item";
 export type TaskGanttContentProps = {
   tasks: BarTask[];
   dates: Date[];
@@ -31,7 +30,6 @@ export type TaskGanttContentProps = {
   setFailedTask: (value: BarTask | null) => void;
   setSelectedTask: (taskId: string) => void;
 } & EventOption;
-
 export const TaskGanttContent: React.FC<TaskGanttContentProps> = ({
   tasks,
   dates,
@@ -60,7 +58,6 @@ export const TaskGanttContent: React.FC<TaskGanttContentProps> = ({
   const [xStep, setXStep] = useState(0);
   const [initEventX1Delta, setInitEventX1Delta] = useState(0);
   const [isMoving, setIsMoving] = useState(false);
-
   // create xStep
   useEffect(() => {
     const dateDelta =
@@ -71,17 +68,14 @@ export const TaskGanttContent: React.FC<TaskGanttContentProps> = ({
     const newXStep = (timeStep * columnWidth) / dateDelta;
     setXStep(newXStep);
   }, [columnWidth, dates, timeStep]);
-
   useEffect(() => {
     const handleMouseMove = async (event: MouseEvent) => {
       if (!ganttEvent.changedTask || !point || !svg?.current) return;
       event.preventDefault();
-
       point.x = event.clientX;
       const cursor = point.matrixTransform(
         svg?.current.getScreenCTM()?.inverse()
       );
-
       const { isChanged, changedTask } = handleTaskBySVGMouseEvent(
         cursor.x,
         ganttEvent.action as BarMoveAction,
@@ -95,13 +89,11 @@ export const TaskGanttContent: React.FC<TaskGanttContentProps> = ({
         setGanttEvent({ action: ganttEvent.action, changedTask });
       }
     };
-
     const handleMouseUp = async (event: MouseEvent) => {
       const { action, originalSelectedTask, changedTask } = ganttEvent;
       if (!changedTask || !point || !svg?.current || !originalSelectedTask)
         return;
       event.preventDefault();
-
       point.x = event.clientX;
       const cursor = point.matrixTransform(
         svg?.current.getScreenCTM()?.inverse()
@@ -115,18 +107,15 @@ export const TaskGanttContent: React.FC<TaskGanttContentProps> = ({
         initEventX1Delta,
         rtl
       );
-
       const isNotLikeOriginal =
         originalSelectedTask.start !== newChangedTask.start ||
         originalSelectedTask.end !== newChangedTask.end ||
         originalSelectedTask.progress !== newChangedTask.progress;
-
       // remove listeners
       svg.current.removeEventListener("mousemove", handleMouseMove);
       svg.current.removeEventListener("mouseup", handleMouseUp);
       setGanttEvent({ action: "" });
       setIsMoving(false);
-
       // custom operation start
       let operationSuccess = true;
       if (
@@ -158,13 +147,11 @@ export const TaskGanttContent: React.FC<TaskGanttContentProps> = ({
           operationSuccess = false;
         }
       }
-
       // If operation is failed - return old state
       if (!operationSuccess) {
         setFailedTask(originalSelectedTask);
       }
     };
-
     if (
       !isMoving &&
       (ganttEvent.action === "move" ||
@@ -191,7 +178,6 @@ export const TaskGanttContent: React.FC<TaskGanttContentProps> = ({
     setFailedTask,
     setGanttEvent,
   ]);
-
   /**
    * Method is Start point of task change
    */
@@ -259,7 +245,6 @@ export const TaskGanttContent: React.FC<TaskGanttContentProps> = ({
       });
     }
   };
-
   return (
     <g className="content">
       <g className="arrows" fill={arrowColor} stroke={arrowColor}>

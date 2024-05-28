@@ -1,6 +1,5 @@
-import React, { SyntheticEvent, useRef, useEffect } from "react";
+import React, { SyntheticEvent, useEffect, useRef } from "react";
 import styles from "./horizontal-scroll.module.css";
-
 export const HorizontalScroll: React.FC<{
   scroll: number;
   svgWidth: number;
@@ -9,13 +8,11 @@ export const HorizontalScroll: React.FC<{
   onScroll: (event: SyntheticEvent<HTMLDivElement>) => void;
 }> = ({ scroll, svgWidth, taskListWidth, rtl, onScroll }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollLeft = scroll;
     }
   }, [scroll]);
-
   return (
     <div
       dir="ltr"
