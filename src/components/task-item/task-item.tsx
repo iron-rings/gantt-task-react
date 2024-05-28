@@ -7,7 +7,6 @@ import { Milestone } from "./milestone/milestone";
 import { Order } from "./order/order";
 import { Project } from "./project/project";
 import style from "./task-list.module.css";
-
 export type TaskItemProps = {
   task: BarTask;
   arrowIndent: number;
@@ -23,7 +22,6 @@ export type TaskItemProps = {
     event?: React.MouseEvent | React.KeyboardEvent
   ) => any;
 };
-
 export const TaskItem: React.FC<TaskItemProps> = props => {
   const {
     task,
@@ -39,7 +37,6 @@ export const TaskItem: React.FC<TaskItemProps> = props => {
   const textRef = useRef<SVGTextElement>(null);
   const [taskItem, setTaskItem] = useState<JSX.Element>(<div />);
   const [isTextInside, setIsTextInside] = useState(true);
-
   useEffect(() => {
     switch (task.typeInternal) {
       case "milestone":
@@ -59,13 +56,11 @@ export const TaskItem: React.FC<TaskItemProps> = props => {
         break;
     }
   }, [task, isSelected]);
-
   useEffect(() => {
     if (textRef.current) {
       setIsTextInside(textRef.current.getBBox().width < task.x2 - task.x1);
     }
   }, [textRef, task]);
-
   const getX = () => {
     const width = task.x2 - task.x1;
     const hasChild = task.barChildren.length > 0;
@@ -83,7 +78,6 @@ export const TaskItem: React.FC<TaskItemProps> = props => {
       return task.x1 + width + arrowIndent * +hasChild + arrowIndent * 0.2;
     }
   };
-
   return (
     <g
       onKeyDown={e => {

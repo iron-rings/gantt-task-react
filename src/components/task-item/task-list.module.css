@@ -10,7 +10,6 @@
   user-select: none;
   pointer-events: none;
 }
-
 .barLabelOutside {
   fill: #555;
   text-anchor: start;

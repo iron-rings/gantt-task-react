@@ -2,7 +2,6 @@ import dayjs from "dayjs";
 import React from "react";
 import { Task } from "../../types/public-types";
 import styles from "./task-list-table.module.css";
-
 export const TaskListTableDefault: React.FC<{
   rowHeight: number;
   rowWidth: string;
@@ -32,11 +31,10 @@ export const TaskListTableDefault: React.FC<{
       {tasks.map(t => {
         let expanderSymbol = "";
         if (t.hideChildren === false) {
-          expanderSymbol = "";
-        } else if (t.hideChildren === true) {
           expanderSymbol = "－";
+        } else if (t.hideChildren === true) {
+          expanderSymbol = "＋";
         }
-
         return (
           <div
             className={styles.taskListTableRow}

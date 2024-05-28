@@ -1,5 +1,4 @@
 import { Task, TaskType } from "./public-types";
-
 export interface BarTask extends Task {
   index: number;
   typeInternal: TaskTypeInternal;
@@ -19,5 +18,4 @@ export interface BarTask extends Task {
     progressSelectedColor: string;
   };
 }
-
 export type TaskTypeInternal = TaskType | "smalltask";

@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./calendar.module.css";
-
 type TopPartOfCalendarProps = {
   value: string;
   x1Line: number;
@@ -9,7 +8,6 @@ type TopPartOfCalendarProps = {
   xText: number;
   yText: number;
 };
-
 export const TopPartOfCalendar: React.FC<TopPartOfCalendarProps> = ({
   value,
   x1Line,

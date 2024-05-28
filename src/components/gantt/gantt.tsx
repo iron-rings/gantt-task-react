@@ -106,7 +106,7 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
     } else {
       filteredTasks = tasks;
     }
-    filteredTasks = filteredTasks.sort(sortTasks);
+    filteredTasks = sortTasks(filteredTasks);
     const [startDate, endDate] = ganttDateRange(
       filteredTasks,
       viewMode,

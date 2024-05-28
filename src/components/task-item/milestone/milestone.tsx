@@ -1,7 +1,6 @@
 import React from "react";
 import { TaskItemProps } from "../task-item";
 import styles from "./milestone.module.css";
-
 export const Milestone: React.FC<TaskItemProps> = ({
   task,
   isDateChangeable,
@@ -15,7 +14,6 @@ export const Milestone: React.FC<TaskItemProps> = ({
       ? task.styles.backgroundSelectedColor
       : task.styles.backgroundColor;
   };
-
   return (
     <g tabIndex={0} className={styles.milestoneWrapper}>
       <rect

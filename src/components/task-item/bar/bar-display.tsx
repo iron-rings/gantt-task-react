@@ -1,6 +1,5 @@
 import React from "react";
 import style from "./bar.module.css";
-
 type BarDisplayProps = {
   x: number;
   y: number;
@@ -34,11 +33,9 @@ export const BarDisplay: React.FC<BarDisplayProps> = ({
   const getProcessColor = () => {
     return isSelected ? styles.progressSelectedColor : styles.progressColor;
   };
-
   const getBarColor = () => {
     return isSelected ? styles.backgroundSelectedColor : styles.backgroundColor;
   };
-
   return (
     <g onMouseDown={onMouseDown}>
       <rect

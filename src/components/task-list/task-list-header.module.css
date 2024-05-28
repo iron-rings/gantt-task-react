@@ -2,17 +2,14 @@
   display: table;
   border-bottom: #e6e4e4 1px solid;
 }
-
 .ganttTable_Header {
   display: table-row;
   list-style: none;
 }
-
 .ganttTable_HeaderSeparator {
   opacity: 1;
   margin-left: -2px;
 }
-
 .ganttTable_HeaderItem {
   display: table-cell;
   vertical-align: -webkit-baseline-middle;

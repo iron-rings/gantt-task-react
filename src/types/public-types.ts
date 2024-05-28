@@ -33,7 +33,6 @@ export interface Task {
   hideChildren?: boolean;
   displayOrder?: number;
 }
-
 export interface EventOption {
   /**
    * Time step value for date changes.
@@ -74,7 +73,6 @@ export interface EventOption {
    */
   onExpanderClick?: (task: Task) => void;
 }
-
 export interface DisplayOption {
   viewMode?: ViewMode;
   viewDate?: Date;
@@ -85,7 +83,6 @@ export interface DisplayOption {
   locale?: string;
   rtl?: boolean;
 }
-
 export interface StylingOption {
   headerHeight?: number;
   columnWidth?: number;
@@ -140,7 +137,6 @@ export interface StylingOption {
     onExpanderClick: (task: Task) => void;
   }>;
 }
-
 export interface GanttProps extends EventOption, DisplayOption, StylingOption {
   tasks: Task[];
 }

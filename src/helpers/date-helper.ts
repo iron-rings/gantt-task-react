@@ -1,7 +1,6 @@
 import { Task, ViewMode } from "../types/public-types";
 import DateTimeFormatOptions = Intl.DateTimeFormatOptions;
 import DateTimeFormat = Intl.DateTimeFormat;
-
 type DateHelperScales =
   | "year"
   | "month"
@@ -10,7 +9,6 @@ type DateHelperScales =
   | "minute"
   | "second"
   | "millisecond";
-
 const intlDTCache = {};
 export const getCachedDateTimeFormat = (
   locString: string | string[],
@@ -24,7 +22,6 @@ export const getCachedDateTimeFormat = (
   }
   return dtf;
 };
-
 export const addToDate = (
   date: Date,
   quantity: number,
@@ -41,7 +38,6 @@ export const addToDate = (
   );
   return newDate;
 };
-
 export const startOfDate = (date: Date, scale: DateHelperScales) => {
   const scores = [
     "millisecond",
@@ -52,7 +48,6 @@ export const startOfDate = (date: Date, scale: DateHelperScales) => {
     "month",
     "year",
   ];
-
   const shouldReset = (_scale: DateHelperScales) => {
     const maxScore = scores.indexOf(scale);
     return scores.indexOf(_scale) <= maxScore;
@@ -68,7 +63,6 @@ export const startOfDate = (date: Date, scale: DateHelperScales) => {
   );
   return newDate;
 };
-
 export const ganttDateRange = (
   tasks: Task[],
   viewMode: ViewMode,
@@ -140,7 +134,6 @@ export const ganttDateRange = (
   }
   return [newStartDate, newEndDate];
 };
-
 export const seedDates = (
   startDate: Date,
   endDate: Date,
@@ -179,7 +172,6 @@ export const seedDates = (
   }
   return dates;
 };
-
 export const getLocaleMonth = (date: Date, locale: string) => {
   let bottomValue = getCachedDateTimeFormat(locale, {
     month: "long",
@@ -190,7 +182,6 @@ export const getLocaleMonth = (date: Date, locale: string) => {
   );
   return bottomValue;
 };
-
 export const getLocalDayOfWeek = (
   date: Date,
   locale: string,
@@ -205,7 +196,6 @@ export const getLocalDayOfWeek = (
   );
   return bottomValue;
 };
-
 /**
  * Returns monday of current week
  * @param date date for modify
@@ -215,7 +205,6 @@ const getMonday = (date: Date) => {
   const diff = date.getDate() - day + (day === 0 ? -6 : 1); // adjust when day is sunday
   return new Date(date.setDate(diff));
 };
-
 export const getWeekNumberISO8601 = (date: Date) => {
   const tmpDate = new Date(date.valueOf());
   const dayNumber = (tmpDate.getDay() + 6) % 7;
@@ -228,14 +217,12 @@ export const getWeekNumberISO8601 = (date: Date) => {
   const weekNumber = (
     1 + Math.ceil((firstThursday - tmpDate.valueOf()) / 604800000)
   ).toString();
-
   if (weekNumber.length === 1) {
     return `0${weekNumber}`;
   } else {
     return weekNumber;
   }
 };
-
 export const getDaysInMonth = (month: number, year: number) => {
   return new Date(year, month + 1, 0).getDate();
 };

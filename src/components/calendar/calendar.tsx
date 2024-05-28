@@ -10,7 +10,6 @@ import { DateSetup } from "../../types/date-setup";
 import { ViewMode } from "../../types/public-types";
 import styles from "./calendar.module.css";
 import { TopPartOfCalendar } from "./top-part-of-calendar";
-
 export type CalendarProps = {
   dateSetup: DateSetup;
   locale: string;
@@ -21,7 +20,6 @@ export type CalendarProps = {
   fontFamily: string;
   fontSize: string;
 };
-
 export const Calendar: React.FC<CalendarProps> = ({
   dateSetup,
   locale,
@@ -75,7 +73,6 @@ export const Calendar: React.FC<CalendarProps> = ({
     }
     return [topValues, bottomValues];
   };
-
   const getCalendarValuesForQuarterYear = () => {
     const topValues: ReactChild[] = [];
     const bottomValues: ReactChild[] = [];
@@ -120,7 +117,6 @@ export const Calendar: React.FC<CalendarProps> = ({
     }
     return [topValues, bottomValues];
   };
-
   const getCalendarValuesForMonth = () => {
     const topValues: ReactChild[] = [];
     const bottomValues: ReactChild[] = [];
@@ -164,7 +160,6 @@ export const Calendar: React.FC<CalendarProps> = ({
     }
     return [topValues, bottomValues];
   };
-
   const getCalendarValuesForWeek = () => {
     const topValues: ReactChild[] = [];
     const bottomValues: ReactChild[] = [];
@@ -180,7 +175,6 @@ export const Calendar: React.FC<CalendarProps> = ({
       }
       // bottom
       const bottomValue = `${getWeekNumberISO8601(date)}週目`;
-
       bottomValues.push(
         <text
           key={date.getTime()}
@@ -191,7 +185,6 @@ export const Calendar: React.FC<CalendarProps> = ({
           {bottomValue}
         </text>
       );
-
       if (topValue) {
         // if last day is new month
         if (i !== dates.length - 1) {
@@ -213,7 +206,6 @@ export const Calendar: React.FC<CalendarProps> = ({
     }
     return [topValues, bottomValues];
   };
-
   const getCalendarValuesForDay = () => {
     const topValues: ReactChild[] = [];
     const bottomValues: ReactChild[] = [];
@@ -226,7 +218,6 @@ export const Calendar: React.FC<CalendarProps> = ({
         locale,
         "short"
       )})`;
-
       bottomValues.push(
         <text
           key={date.getTime()}
@@ -242,7 +233,6 @@ export const Calendar: React.FC<CalendarProps> = ({
         date.getMonth() !== dates[i + 1].getMonth()
       ) {
         const topValue = getLocaleMonth(date, locale);
-
         topValues.push(
           <TopPartOfCalendar
             key={topValue + date.getFullYear()}
@@ -263,7 +253,6 @@ export const Calendar: React.FC<CalendarProps> = ({
     }
     return [topValues, bottomValues];
   };
-
   const getCalendarValuesForPartOfDay = () => {
     const topValues: ReactChild[] = [];
     const bottomValues: ReactChild[] = [];
@@ -275,7 +264,6 @@ export const Calendar: React.FC<CalendarProps> = ({
       const bottomValue = getCachedDateTimeFormat(locale, {
         hour: "numeric",
       }).format(date);
-
       bottomValues.push(
         <text
           key={date.getTime()}
@@ -305,10 +293,8 @@ export const Calendar: React.FC<CalendarProps> = ({
         );
       }
     }
-
     return [topValues, bottomValues];
   };
-
   const getCalendarValuesForHour = () => {
     const topValues: ReactChild[] = [];
     const bottomValues: ReactChild[] = [];
@@ -319,7 +305,6 @@ export const Calendar: React.FC<CalendarProps> = ({
       const bottomValue = getCachedDateTimeFormat(locale, {
         hour: "numeric",
       }).format(date);
-
       bottomValues.push(
         <text
           key={date.getTime()}
@@ -355,10 +340,8 @@ export const Calendar: React.FC<CalendarProps> = ({
         );
       }
     }
-
     return [topValues, bottomValues];
   };
-
   let topValues: ReactChild[] = [];
   let bottomValues: ReactChild[] = [];
   switch (dateSetup.viewMode) {
