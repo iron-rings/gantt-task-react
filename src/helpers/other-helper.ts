@@ -140,5 +140,11 @@ export const sortTasks = (tasks: Task[]): Task[] => {
     });
   });
 
+  // childrenを削除
+  sortedTasks.forEach(task => {
+    // @ts-ignore
+    delete (task as TaskWithChildren).children;
+  });
+
   return sortedTasks;
 };
