@@ -31,9 +31,9 @@ export const TaskListTableDefault: React.FC<{
       {tasks.map(t => {
         let expanderSymbol = "";
         if (t.hideChildren === false) {
-          expanderSymbol = "";
+          expanderSymbol = "-";
         } else if (t.hideChildren === true) {
-          expanderSymbol = "";
+          expanderSymbol = "+";
         }
         return (
           <div

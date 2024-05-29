@@ -21,7 +21,6 @@ export function removeHiddenTasks(tasks: Task[]) {
   const groupedTasks = tasks.filter(
     t => t.hideChildren && (t.type === "project" || t.type === "order")
   );
-  console.log("g", groupedTasks);
   if (groupedTasks.length > 0) {
     for (let i = 0; groupedTasks.length > i; i++) {
       const groupedTask = groupedTasks[i];
@@ -67,7 +66,6 @@ function getChildren(taskList: Task[], task: Task): Task[] {
 
   tasks = tasks.concat(taskChildren);
 
-  console.log(tasks); // デバッグ用にタスクリストを表示
   return tasks;
 }
 
