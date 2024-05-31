@@ -31,9 +31,9 @@ export const TaskListTableDefault: React.FC<{
       {tasks.map(t => {
         let expanderSymbol = "";
         if (t.hideChildren === false) {
-          expanderSymbol = "";
+          expanderSymbol = "-";
         } else if (t.hideChildren === true) {
-          expanderSymbol = "";
+          expanderSymbol = "+";
         }
         return (
           <div
@@ -60,10 +60,15 @@ export const TaskListTableDefault: React.FC<{
                       : styles.taskListEmptyExpander
                   }
                 >
-                  {t.type === "order" ? "" : "　"}
-                  {t.project ? "　" : ""}
+                  {t.type === "order" ? "" : null}
+                  {t.type === "project" ? "　　" : null}
+                  {t.type === "task" ? "　　　　" : null}
+                  {t.type === "task_grps" ? "　　　　" : null}
+                  {t.type === "milestone" ? "　　　　" : null}
                   {"　"}
-                  {expanderSymbol}
+                  {expanderSymbol ? (
+                    <span className={styles.expander}>{expanderSymbol}</span>
+                  ) : null}
                 </div>
                 <div>
                   {t.type === "task" || t.type === "task_grps" ? (
