@@ -66,6 +66,7 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
   onSelect,
   onExpanderClick,
 }) => {
+  const [hoverFlg, setHoverFlg] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const taskListRef = useRef<HTMLDivElement>(null);
   const [dateSetup, setDateSetup] = useState<DateSetup>(() => {
@@ -142,6 +143,7 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
         milestoneBackgroundSelectedColor
       )
     );
+
   }, [
     tasks,
     viewMode,
@@ -387,6 +389,24 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
       onExpanderClick({ ...task, hideChildren: !task.hideChildren });
     }
   };
+  const hoverWrapper = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if (hoverFlg) {
+      return;
+    }
+    console.log("hoverWrapper", e);
+    const targetElement = document.getElementById("horizontal-scroll");
+    targetElement?.setAttribute("style", `position: absolute; top: ${ganttHeight}px; left: 465px; width: 80%;`);
+    setHoverFlg(true);
+  }
+  const UnHoverWrapper = () => {
+    if (!hoverFlg) {
+      return;
+    }
+    console.log("UnHoverWrapper");
+    const targetElement = document.getElementById("horizontal-scroll");
+    targetElement?.setAttribute("style", "position: static;");
+    setHoverFlg(false);
+  }
   const gridProps: GridProps = {
     columnWidth,
     svgWidth,
@@ -450,7 +470,10 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
     TaskListTable,
   };
   return (
-    <div>
+    <div style={{height: ganttHeight - 100, overflow: "auto"}}
+      onMouseOver={(e) => hoverWrapper(e)}
+      onMouseLeave={() => UnHoverWrapper()}
+    >
       <div
         className={styles.wrapper}
         onKeyDown={handleKeyDown}

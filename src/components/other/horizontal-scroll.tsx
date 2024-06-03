@@ -15,6 +15,7 @@ export const HorizontalScroll: React.FC<{
   }, [scroll]);
   return (
     <div
+      id="horizontal-scroll"
       dir="ltr"
       style={{
         margin: rtl
