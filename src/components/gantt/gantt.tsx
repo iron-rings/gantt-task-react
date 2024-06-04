@@ -389,24 +389,7 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
       onExpanderClick({ ...task, hideChildren: !task.hideChildren });
     }
   };
-  const hoverWrapper = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    if (hoverFlg) {
-      return;
-    }
-    console.log("hoverWrapper", e);
-    const targetElement = document.getElementById("horizontal-scroll");
-    targetElement?.setAttribute("style", `position: absolute; top: ${ganttHeight}px; left: 550px; width: 78%;`);
-    setHoverFlg(true);
-  }
-  const UnHoverWrapper = () => {
-    if (!hoverFlg) {
-      return;
-    }
-    console.log("UnHoverWrapper");
-    // const targetElement = document.getElementById("horizontal-scroll");
-    // targetElement?.setAttribute("style", "position: static;");
-    setHoverFlg(false);
-  }
+
   const gridProps: GridProps = {
     columnWidth,
     svgWidth,
@@ -470,10 +453,7 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
     TaskListTable,
   };
   return (
-    <div
-      onMouseOver={(e) => hoverWrapper(e)}
-      onMouseLeave={() => UnHoverWrapper()}
-    >
+    <div>
       <div
         className={styles.wrapper}
         onKeyDown={handleKeyDown}
