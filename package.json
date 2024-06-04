@@ -1,6 +1,6 @@
 {
   "name": "ir-gantt-task-react",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Interactive Gantt Chart for React with TypeScript.",
   "author": "MaTeMaTuK <maksym.vikarii@gmail.com>",
   "homepage": "https://github.com/iron-rings/gantt-task-react",
