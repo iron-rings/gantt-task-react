@@ -395,7 +395,7 @@ export const Gantt: React.FunctionComponent<GanttProps> = ({
     }
     console.log("hoverWrapper", e);
     const targetElement = document.getElementById("horizontal-scroll");
-    targetElement?.setAttribute("style", `position: absolute; bottom: ${ganttHeight}px; left: 465px; width: 80%;`);
+    targetElement?.setAttribute("style", `position: absolute; bottom: 20px; left: 550px; width: 80%;`);
     setHoverFlg(true);
   }
   const UnHoverWrapper = () => {
